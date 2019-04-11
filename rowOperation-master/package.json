@@ -1,0 +1,38 @@
+{
+  "name": "NodejsStarterApp",
+  "version": "0.0.1",
+  "description": "A sample nodejs app for Bluemix",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cfenv": "1.0.x",
+    "cookie-parser": "1.4.0",
+    "debug": "^2.2.0",
+    "express-session": "1.11.3",
+    "passport": "^0.3.2",
+    "passport-idaas-openidconnect": "^1.1.2",
+	"body-parser": "^1.15.2",
+    "couch-db": "*",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "ibm_db": "2.0.0",
+    "mongodb": "*",
+    "nano": "*",
+    "node-couchdb": "*",
+    "nodemailer": "^4.0.1",
+    "q": "*",
+    "sendgrid": "1.1.1",
+    "unirest": "*",
+    "watson-developer-cloud": "^2.8.1",
+    "vcap_services": "^0.3.2",
+    "watson-developer-cloud": "^2.28.1",
+    "watson-speech": "0.34.1",
+    "whatwg-fetch": "^0.11.0"
+  },
+  "repository": {},
+  "engines": {
+    "node": ">= 6.9.x",
+    "npm": "> 3.10.x"
+  }
+}

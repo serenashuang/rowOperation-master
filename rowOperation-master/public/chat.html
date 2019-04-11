@@ -1,0 +1,243 @@
+<html>
+
+<head>
+    <!--   <base href="/">-->
+    <title>Ask Watson</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:image" content="conversation.svg" />
+    <meta property="og:title" content="Oneteam Support" />
+    <meta property="og:description" content="Oneteam Support" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrapValidator.min.css">
+    <div id="ibm-universal-nav" role="navigation" aria-label="Site map" style="height: 80px;">
+        <div  class="imgLogo" style="width: 65px;height: 65px;"></div>
+        <span id="ibm-site-title" style="line-height: 30px;"><em style = "font-size:18pt;font-weight:700;margin-right:0rem">
+            Ask Watson</em><em style = "font-size:8pt;font-weight:700;margin-right:17rem">@APCIS</em>
+        </span>
+        
+    </div>
+</head>
+
+<body>
+    <div id="contentParent" class="responsive-columns-wrapper">
+        <div id="chat-column-holder" class="responsive-column content-column">
+            <div class="chat-column">
+                <div id="scrollingChat" class="content">
+                    <img src="img/loading.gif" class="loadingChat" style="display:none;">
+					<p>Hi! I'm APCIS Helper.<br><br>I can answer your questions related to APCIS in English. 
+					Short questions in full sentences work best. Here I'd like to share the <strong>Question map</strong>, 
+					it will help to figure out the questions you are facing more easily.</p>
+                </div>
+                <label for="textInput" class="inputOutline">
+                        <img src="img/timg.gif" class="refreshImage" id="refreshImageID" style="display:none;">
+                     <button id="mic-image" hidden="hidden" class="base--button" onclick="Stt.recordSpeech()">
+                       <svg class="icon icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="#000000">
+                           <path d="M16,23.1c3.9,0,7-3.1,7-7v-2v-1v-2v-1v-2c0-3.9-3.1-7-7-7s-7,3.1-7,7v2v1v2v1v2C9,20,12.1,23.1,16,23.1z M13,14.1h-2v-1h2c0.6,0,1-0.4,1-1s-0.4-1-1-1h-2v-1h2c0.6,0,1-0.4,1-1s-0.4-1-1-1h-2c0-2.8,2.2-5,5-5s5,2.2,5,5h-2 c-0.6,0-1,0.4-1,1s0.4,1,1,1h2v1h-2c-0.6,0-1,0.4-1,1s0.4,1,1,1h2v1h-2c-0.6,0-1,0.4-1,1s0.4,1,1,1h2c0,2.8-2.2,5-5,5s-5-2.2-5-5h2 c0.6,0,1-0.4,1-1S13.6,14.1,13,14.1z"></path>
+                           <path d="M26,16.1h-2c0,4.4-3.6,8-8,8s-8-3.6-8-8H6c0,5.2,4,9.4,9,9.9v3.1h-3v2h3h2h3v-2h-3V26 C22,25.5,26,21.3,26,16.1z"></path>
+                       </svg>
+                      </button>
+
+                    <input id="textInput" class="input responsive-column" placeholder="Ask me question" type="text" onkeydown="ConversationPanel.inputKeyDown(event, this)">
+                </label>
+                
+                <!-- <div class="Slide">
+                    <i class="slidemid"></i>
+                </div>
+                <div class="InfoButton">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalQuestion">send mail </button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalFeedBack">feed back</button>
+                </div> -->
+                
+                <div class="modal fade" tabindex="-1" role="dialog" id="modalQuestion">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Don't get correct answer</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>If you cannnot get the correct answer you can email to us we will respond you as soon as possible.</p>
+                                <form class="form-horizontal" id="form-horizontal-email">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-xs-3 control-label">To:</label>
+                                        <label class="col-sm-6 control-label col-xs-6" name="toEmail">kongyh@cn.ibm.com</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-xs-3 control-label label-format">From:</label>
+                                        <div class="col-sm-9 col-xs-9">
+                                            <input type="email" class="form-control" name="email" id="emailto" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-xs-3 control-label label-format">Subject:</label>
+                                        <div class="col-sm-9 col-xs-9">
+                                            <input class="form-control" name="subject" id="EmailSubject" placeholder="Subject">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-xs-3 control-label">Guild:</label>
+                                        <div class="col-sm-9 col-xs-9">
+                                            <select class="form-control" name="guild" id="EmailGuild">
+                                              <option value="agile">Agile</option>
+                                              <option value="ich">ICH</option>
+                                              <option value="automation">Automation</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-xs-3 control-label">Content:</label>
+                                        <div class="col-sm-9 col-xs-9">
+                                            <textarea class="form-control" rows="5" id="EmailContent" name="emailContent"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group modal-footer">
+                                        <button type="button" name="submit" class="btn btn-primary" onclick="clickEmail()">Submit</button>
+                                        <button type="button" class="btn" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal fade" tabindex="-1" role="dialog" id="modalFeedBack">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">feed back</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" id="form-horizontal-feedBack">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 col-xs-4 control-label label-format">From:</label>
+                                        <div class="col-sm-8 col-xs-8">
+                                            <input type="email" class="form-control" name="email" id="emailComment" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 col-xs-4 control-label">Comment:</label>
+                                        <div class="col-sm-8 col-xs-8">
+                                            <textarea class="form-control" rows="5" id="modalComment" name="comment"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group modal-footer">
+                                        <button type="submit" class="btn btn-primary" name="submit" onclick="clickComment()">Submit</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div id="payload-column" class="fixed-column content-column" hidden="hidden">
+                <div id="payload-initial-message">
+                    Type something to see the output
+                </div>
+                <div id="payload-request" class="payload"></div>
+                <div id="payload-response" class="payload"></div>
+            </div>
+        </div>
+        <input type="hidden" id="audioMessage" value="" >
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.10.4.min.js"></script>
+      
+        <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+        <script>
+           
+          
+
+            $(".content").mCustomScrollbar({
+                scrollButtons: {
+                    enable: true
+                }
+            });
+            
+
+		 function requestSend() {
+            Api.clickRequest('request access', null);
+        }
+
+        function replaceSend() {
+            Api.clickRequest('replace access', null);
+        }
+
+        function updateSend() {
+            Api.clickRequest('update access', null);
+        }
+
+        function deleteSend() {
+            Api.clickRequest('delete access', null);
+        }
+
+        function transferSend() {
+            Api.clickRequest('transfer access', null);
+        }
+
+        function approveSend() {
+            Api.clickRequest('approve access', null);
+        }
+
+        function clickLink(input){
+            var context;
+            var latestResponse = Api.getResponsePayload();
+            if (latestResponse) {
+                context = latestResponse.context;
+            }
+            Api.sendRequest(input.trim(), context);
+        }
+
+        function openEmail(guild,content,emailAddress){
+            
+            $('#emailto').val(emailAddress);
+            $('#EmailSubject').val("Don't get correct answer.");
+            if(guild != ''){
+                $('#EmailGuild').val(guild.toLowerCase());
+            }else{
+                $('#EmailGuild').val('agile');
+            }
+            $('#EmailContent').val(content);
+        }
+
+        function read(contentString){
+            console.log("start to read!");
+            Stt.textToSpeech(contentString);
+        }
+
+        </script>
+		
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/size.js"></script>
+<!--         //<script src="js/common.min.js"></script> -->
+        <script src="js/common.js"></script>
+<!--         // <script src="js/api.min.js"></script> -->
+        <script src="js/api.js"></script>
+<!--         // <script src="js/stt.js"></script> -->
+<!--         // <script src="js/conversation.min.js"></script> -->
+        <script src="js/conversation.js"></script>
+<!--         // <script src="js/payload.min.js"></script> -->
+        <script src="js/payload.js"></script>
+<!--         // <script src="js/global.min.js"></script> -->
+        <script src="js/global.js"></script>
+
+
+        <script src="/node_modules/whatwg-fetch/fetch.js"></script>
+        <script src="ibm/watson-speech.min.js"></script>
+
+
+        <script type="text/javascript" src="js/modalEmail.js">
+        <script type="text/javascript" src="js/modalFeedback.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrapValidator.min.js"></script>
+        <script type="text/javascript" src="js/jquery-confirm.min.js"></script>
+        <script type="text/javascript" src="js/weixinAudio.js"></script>
+        <script type="text/javascript" src="js/slide.js"></script>
+</body>
+
+</html>

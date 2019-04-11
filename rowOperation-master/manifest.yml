@@ -1,0 +1,9 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: w3ibm.mybluemix.net
+  name: rowOperation
+  host: rowOperation
+  disk_quota: 1024M
+  health-check-type: process

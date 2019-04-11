@@ -1,0 +1,65 @@
+*{
+	padding:0;
+	margin:0;
+}
+body{
+	
+}
+.container{
+width: 1220px;
+margin-left:auto;
+margin-right:auto;
+}
+.MidText{
+	width:70%;
+	height: 550px;
+	margin-left:15%;
+	margin-right:15%;
+
+	position: fixed;
+	bottom:0;
+}
+.slogan{
+	font-size: 55px;
+	text-align:center;
+	color: black;
+	/*color: rgb(96,56,17);*/
+	line-height: 55px;
+	font-weight: 500;
+	font-family: "Comic Sans MS",sans-serif;
+}
+.slogan2{
+	font-size: 36px;
+	text-align:center;
+	color: black;
+	/*color: rgb(96,56,17);*/
+	line-height: 55px;
+	font-weight: 500;
+	font-family: "Comic Sans MS",sans-serif;
+}
+.f1{
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#font{
+	font-size: 17px;
+	text-align:center;
+	color: white;
+	font-weight: 500;
+	margin-top: 40px;
+	margin-bottom: 20px;
+	font-family: "Comic Sans MS",sans-serif;
+}
+.logo{
+
+	margin-bottom:100px;
+	text-align: center;
+	margin: auto;
+}
+
+.image{
+ height: 350px;
+    width: 350px;
+}
